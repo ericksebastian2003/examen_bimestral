@@ -1,0 +1,7 @@
+{
+  "name": "Libros_al_azar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
