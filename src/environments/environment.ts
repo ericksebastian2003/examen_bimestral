@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyAbMFYNMV63u8MY_EB9cWnjeN495wAkOz8",
-    authDomain: "b-470cb.firebaseapp.com",
-    projectId: "b-470cb",
-    storageBucket: "b-470cb.firebasestorage.app",
-    messagingSenderId: "901764449978",
-    appId: "1:901764449978:web:e69f6f8a6f900815cfe483",
-    measurementId: "G-JTVSPGD292"
+    apiKey: "AIzaSyDMJQqJJERfazZ1ymbJopMQmECUSDvNuuw",
+    authDomain: "aplimoviles-e42c2.firebaseapp.com",
+    projectId: "aplimoviles-e42c2",
+    storageBucket: "aplimoviles-e42c2.firebasestorage.app",
+    messagingSenderId: "349601688361",
+    appId: "1:349601688361:web:93df32e16c7bfefda86538",
+    measurementId: "G-Y9X3NMYK3Q"
   }
 };

@@ -1,21 +1,25 @@
 <style>
-  .error-message {
+  /* Estilos de mensajes de error */
+.error-message {
   color: red;
   font-weight: bold;
   text-align: center;
   margin: 16px 0;
 }
 
+/* Estilos para las secciones */
 .section {
   margin-top: 20px;
 }
 
+/* Estilos para la cuadrícula de imágenes */
 .images-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px;
 }
 
+/* Estilo de la tarjeta de imagen */
 .image-card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -23,20 +27,32 @@
   background: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  padding: 5px;
 }
 
+/* Imagen dentro de la tarjeta */
 .image-card img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
+/* Efecto hover para las tarjetas de imágenes */
 .image-card:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
 }
 
+/* Estilos adicionales para las imágenes de perros */
+.dog-images img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+
 </style>
+<!--
 <ion-header>
   <ion-toolbar>
     <ion-title>Inicio</ion-title>
@@ -44,15 +60,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Botón para guardar libros e imágenes en Firebase -->
-  
 
-  <!-- Mostrar mensaje de error -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
-  <!-- Sección de Libros -->
   <div *ngIf="books.length > 0">
     <h2>Libros Generados:</h2>
     <ul>
@@ -61,7 +73,6 @@
   </div>
   
 
-  <!-- Sección de Imágenes de Perros -->
   <div *ngIf="dogImages.length > 0" class="section">
     <h2>Imágenes de Perros:</h2>
     <div class="images-container">
@@ -71,5 +82,46 @@
     </div>
   </div>
 
-  <ion-button expand="block" color="primary">Guardar en Firebase</ion-button>
+  <ion-button expand="block" color="primary" onclick="saveFirebaseURL()">Guardar en Firebase</ion-button>
 </ion-content>
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Libros Generados -->
+  <div *ngIf="books.length > 0">
+    <h2>Libros Generados:</h2>
+    <ion-list>
+      <ion-item *ngFor="let book of books">
+        <ion-label>{{ book }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Imágenes de Perros -->
+  <div *ngIf="dogImages.length > 0" class="section">
+    <h2>Imágenes de Perros:</h2>
+    <div class="images-container">
+      <div *ngFor="let image of dogImages" class="image-card">
+        <img [src]="image" alt="Dog Image" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para guardar en Firebase -->
+  <ion-button expand="block" color="primary" (click)="saveFirebaseURL()">
+    Guardar en Firebase
+  </ion-button>
+
+</ion-content>
+

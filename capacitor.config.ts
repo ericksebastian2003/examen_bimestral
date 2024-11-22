@@ -2,19 +2,23 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'Libros_al_azar',
+  appName: 'Erick Caiza',
   webDir: 'www',
   plugins: {
     SplashScreen: {
-      launchShowDuration: 3000, // Tiempo en ms que se muestra el splash
+      launchShowDuration: 0,
       launchAutoHide: true,
-      backgroundColor: '#ffffff', // Color de fondo del splash
-      androidSplashResourceName: 'splash',
-      androidScaleType: 'CENTER_CROP',
+      backgroundColor: "#000000",
+      androidSplashResourceName: "splash",
+      androidScaleType: "CENTER_CROP",
       showSpinner: true,
-      androidSpinnerStyle: 'large',
-      iosSpinnerStyle: 'small',
-      spinnerColor: '#000000', // Color del spinner
+      androidSpinnerStyle: "large",
+      iosSpinnerStyle: "small",
+      spinnerColor: "#000000",
+      splashFullScreen: false,
+      splashImmersive: false,
+      layoutName: "launch_screen",
+      useDialog: false,
     },
   },
 };
