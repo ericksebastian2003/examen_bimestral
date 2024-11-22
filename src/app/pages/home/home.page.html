@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dog API</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Raza Seleccionada</h2>
+  <p *ngIf="selectedBreed">{{ selectedBreed }}</p>
+  <p *ngIf="!selectedBreed">No se ha seleccionado ninguna raza aún.</p>
+
+  <h2>Imagen del Perro</h2>
+  <img *ngIf="dogImage" [src]="dogImage" alt="Imagen de Perro" />
+  <p *ngIf="!dogImage">Cargando imagen...</p>
+
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+  <h2>Libro Aleatorio</h2>
+  <pre *ngIf="books">{{ books | json }}</pre>
+</ion-content>
