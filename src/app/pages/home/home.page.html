@@ -1,20 +1,75 @@
+<style>
+  .error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.images-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.image-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+</style>
 <ion-header>
   <ion-toolbar>
-    <ion-title>Dog API</ion-title>
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Raza Seleccionada</h2>
-  <p *ngIf="selectedBreed">{{ selectedBreed }}</p>
-  <p *ngIf="!selectedBreed">No se ha seleccionado ninguna raza aún.</p>
+  <!-- Botón para guardar libros e imágenes en Firebase -->
+  
 
-  <h2>Imagen del Perro</h2>
-  <img *ngIf="dogImage" [src]="dogImage" alt="Imagen de Perro" />
-  <p *ngIf="!dogImage">Cargando imagen...</p>
+  <!-- Mostrar mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
-  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  <!-- Sección de Libros -->
+  <div *ngIf="books.length > 0">
+    <h2>Libros Generados:</h2>
+    <ul>
+      <li *ngFor="let book of books">{{ book }}</li>
+    </ul>
+  </div>
+  
 
-  <h2>Libro Aleatorio</h2>
-  <pre *ngIf="books">{{ books | json }}</pre>
+  <!-- Sección de Imágenes de Perros -->
+  <div *ngIf="dogImages.length > 0" class="section">
+    <h2>Imágenes de Perros:</h2>
+    <div class="images-container">
+      <div *ngFor="let image of dogImages" class="image-card">
+        <img [src]="image" alt="Dog Image" />
+      </div>
+    </div>
+  </div>
+
+  <ion-button expand="block" color="primary">Guardar en Firebase</ion-button>
 </ion-content>

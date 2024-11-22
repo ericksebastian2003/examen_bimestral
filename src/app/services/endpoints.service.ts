@@ -24,7 +24,8 @@ export class EndpointsService {
 
   // Obtener información de un libro aleatorio
   getBook(): Observable<any> {
-    const randomNumber = Math.floor(Math.random() * 1000) + 1; // Número aleatorio entre 1 y 1000
-    return this.http.get(`${this.baseUrlBook}${randomNumber}`);
+    const randomNumber = Math.floor(Math.random() * 74598) + 1; // Número aleatorio entre 1 y 74598 (el total de libros)
+    return this.http.get(`${this.baseUrlBook}ids=${randomNumber}`);
   }
+  
 }
