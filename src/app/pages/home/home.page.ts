@@ -63,34 +63,38 @@ export class HomePage implements OnInit {
 
   // Obtener 10 títulos de libros aleatorios
   // Obtener 10 títulos de libros aleatorios
-generateBooks(): void {
-  const bookPromises: Promise<string>[] = [];
-
-  for (let i = 0; i < 10; i++) {
-    const bookPromise = this.endpointsService.getBook().toPromise().then(
-      (response) => {
-        if (response.results && response.results.length > 0) {
-          return response.results[0].title; // Devuelve el título del libro
-        } else {
-          return 'Libro no encontrado'; // Mensaje en caso de que no haya resultados
+  generateBooks(): void {
+    const bookPromises: Promise<string>[] = [];
+    const uniqueBooks = new Set<string>(); // Usar un Set para evitar duplicados
+  
+    for (let i = 0; i < 10; i++) {
+      const bookPromise = this.endpointsService.getBook().toPromise().then(
+        (response) => {
+          if (response.results && response.results.length > 0) {
+            const title = response.results[0].title;
+            if (!uniqueBooks.has(title)) { // Solo agregar si no está en el Set
+              uniqueBooks.add(title);
+              return title;
+            }
+          }
+          return null; // Retornar null si el libro ya existe o no hay resultados
+        },
+        (error) => {
+          console.error('Error al cargar el libro:', error);
+          return 'Error al cargar libro';
         }
-      },
-      (error) => {
-        console.error('Error al cargar el libro:', error);
-        return 'Error al cargar libro';
-      }
-    );
-
-    bookPromises.push(bookPromise);
+      );
+  
+      bookPromises.push(bookPromise);
+    }
+  
+    // Esperar a que todas las promesas se resuelvan
+    Promise.all(bookPromises).then((titles) => {
+      this.books = Array.from(uniqueBooks); // Convertir el Set a un array
+      console.log('Libros generados:', this.books);
+    });
   }
-
-  // Esperar a que todas las promesas se resuelvan
-  Promise.all(bookPromises).then((titles) => {
-    this.books = titles;
-    console.log('Libros generados:', this.books);
-  });
-}
-
+  
 
   // Guardar libro e imagen en Firebase
   /*saveFirebaseURL(): void {

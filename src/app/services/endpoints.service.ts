@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class EndpointsService {
   private baseUrlDog = 'https://dog.ceo/api/breeds/list/all';
   private baseUrlImage = 'https://dog.ceo/api/breed';
-  private baseUrlBook = 'https://gutendex.com/books/?ids=';
+  private baseUrlBook = 'https://gutendex.com/books/';
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +25,6 @@ export class EndpointsService {
   // Obtener información de un libro aleatorio
   getBook(): Observable<any> {
     const randomNumber = Math.floor(Math.random() * 74598) + 1; // Número aleatorio entre 1 y 74598 (el total de libros)
-    return this.http.get(`${this.baseUrlBook}ids=${randomNumber}`);
+    return this.http.get(`${this.baseUrlBook}?ids=${randomNumber}`);
   }
-  
 }
